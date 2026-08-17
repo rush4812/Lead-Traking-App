@@ -3,14 +3,7 @@ node_modules/
 .pnp
 .pnp.js
 
-# SQLite Database Files
-backend/src/db/*.db
-backend/src/db/*.db-journal
-backend/src/db/*.db-wal
-backend/src/db/*.db-shm
-*.sqlite
-*.sqlite3
-*.db
+
 
 # Environment variables
 .env
