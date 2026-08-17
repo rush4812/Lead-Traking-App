@@ -40,10 +40,3 @@ logs/
 *.sw?
 .DS_Store
 
-# AI and Personal Files
-LEADS_TRACKING_APP_MASTER_GUIDE.html
-Leads_Tracking_App_Master_Guide.pdf
-implementation_plan.md
-*.pdf
-.gemini/
-backend/generate_pdf.js
