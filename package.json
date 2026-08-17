@@ -1,0 +1,22 @@
+{
+  "name": "leads-tracking-app",
+  "version": "1.0.0",
+  "description": "Full-Stack Leads Tracking App with Node.js, Express, SQLite, and React",
+  "scripts": {
+    "backend": "npm --prefix backend run dev",
+    "frontend": "npm --prefix frontend run dev",
+    "seed": "npm --prefix backend run seed",
+    "test:api": "npm --prefix backend test_api.js",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "keywords": [
+    "mern",
+    "sqlite",
+    "react",
+    "express",
+    "nodejs",
+    "crm"
+  ],
+  "author": "",
+  "license": "ISC"
+}

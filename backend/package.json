@@ -1,0 +1,33 @@
+{
+  "name": "leads-tracker-backend",
+  "version": "1.0.0",
+  "description": "Backend REST API for Leads Tracking App using Node.js, Express, and SQLite",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "seed": "node src/db/seed.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "sqlite",
+    "rest-api",
+    "leads-tracker"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "html-pdf-node": "^1.0.8",
+    "markdown-pdf": "^11.0.0",
+    "nodemon": "^3.1.9",
+    "pdfkit": "^0.19.1"
+  }
+}
