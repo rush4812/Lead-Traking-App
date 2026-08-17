@@ -28,66 +28,50 @@ const seedDatabase = () => {
 
   // Transaction for atomic and fast insertion
   const seedTransaction = db.transaction(() => {
-    // 1. Rahul Patel
-    const lead1 = insertLead.run(
-      'Rahul Patel',
-      'rahul@gmail.com',
-      '9876543210',
-      'new',
-      '2026-08-10 10:30:00'
-    );
-    insertNote.run(
-      lead1.lastInsertRowid,
+    const firstNames = [
+      'Rahul', 'Priya', 'Amit', 'Sneha', 'Rohan', 'Aisha', 'Vikram', 'Neha', 
+      'Karan', 'Pooja', 'Arjun', 'Anjali', 'Dev', 'Kavya', 'Yash', 'Riya',
+      'Kabir', 'Tara', 'Sahil', 'Meera', 'Samar', 'Nisha', 'Ravi', 'Simran'
+    ];
+    const lastNames = ['Patel', 'Shah', 'Mehta', 'Sharma', 'Singh', 'Verma', 'Gupta', 'Kumar', 'Deshmяк', 'Joshi'];
+    const statuses = ['new', 'contacted', 'qualified', 'lost'];
+    const notesContent = [
       'Initial inbound inquiry received from website contact form.',
-      '2026-08-10 10:35:00'
-    );
-
-    // 2. Priya Shah
-    const lead2 = insertLead.run(
-      'Priya Shah',
-      'priya@gmail.com',
-      '9812345678',
-      'contacted',
-      '2026-08-12 14:00:00'
-    );
-    insertNote.run(
-      lead2.lastInsertRowid,
-      'Called Priya on Monday. Discussed enterprise plan features.',
-      '2026-08-12 14:15:00'
-    );
-    insertNote.run(
-      lead2.lastInsertRowid,
+      'Discussed enterprise plan features.',
       'Sent product demo video and pricing breakdown via email.',
-      '2026-08-13 11:20:00'
-    );
+      'Budget approved by CFO. Technical review meeting scheduled.',
+      'Client decided to renew with existing vendor.',
+      'Left a voicemail, waiting for callback.',
+      'Requested more time to review the proposal.',
+      'Interested in a customized plan, setting up a meeting with sales engineer.',
+      'Unreachable, will try again next week.',
+      'Competitor offered a lower price, evaluating options.'
+    ];
 
-    // 3. Amit Mehta
-    const lead3 = insertLead.run(
-      'Amit Mehta',
-      'amit@gmail.com',
-      '9765432109',
-      'qualified',
-      '2026-08-14 09:15:00'
-    );
-    insertNote.run(
-      lead3.lastInsertRowid,
-      'Budget approved by CFO. Technical review meeting scheduled for Friday.',
-      '2026-08-14 16:45:00'
-    );
+    for (let i = 0; i < 20; i++) {
+      const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+      const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      const fullName = `${firstName} ${lastName}`;
+      const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}${i}@example.com`;
+      const phone = `9${Math.floor(100000000 + Math.random() * 900000000)}`;
+      const status = statuses[Math.floor(Math.random() * statuses.length)];
+      
+      const day = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
+      const hour = String(Math.floor(Math.random() * 12) + 8).padStart(2, '0');
+      const minute = String(Math.floor(Math.random() * 60)).padStart(2, '0');
+      const createdAt = `2026-08-${day} ${hour}:${minute}:00`;
 
-    // 4. Sneha Sharma
-    const lead4 = insertLead.run(
-      'Sneha Sharma',
-      'sneha@gmail.com',
-      '9654321987',
-      'lost',
-      '2026-08-15 16:00:00'
-    );
-    insertNote.run(
-      lead4.lastInsertRowid,
-      'Client decided to renew with existing vendor for another quarter due to timeline constraints.',
-      '2026-08-15 17:30:00'
-    );
+      const lead = insertLead.run(fullName, email, phone, status, createdAt);
+
+      // Add 1-3 random notes per lead
+      const numNotes = Math.floor(Math.random() * 3) + 1;
+      for (let j = 0; j < numNotes; j++) {
+        const noteText = notesContent[Math.floor(Math.random() * notesContent.length)];
+        const noteHour = String(Math.floor(Math.random() * 12) + 8).padStart(2, '0');
+        const noteCreatedAt = `2026-08-${day} ${noteHour}:${minute}:00`;
+        insertNote.run(lead.lastInsertRowid, noteText, noteCreatedAt);
+      }
+    }
   });
 
   seedTransaction();

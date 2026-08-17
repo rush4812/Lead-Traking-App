@@ -33,3 +33,6 @@ logs/
 *.sw?
 .DS_Store
 
+# SQLite Temp Files
+*.db-shm
+*.db-wal
